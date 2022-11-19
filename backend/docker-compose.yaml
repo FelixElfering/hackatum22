@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  database:
+    image: postgres:14.1-alpine
+    container_name: hotstuff_database
+    ports:
+      - "5432:5432"
+    volumes:
+      - db:/var/lib/postgresql/data
+      - ./postgres.conf:/usr/share/postgresql/postgresql.conf.sample
+    environment:
+      - POSTGRES_USER=hotstuff
+      - POSTGRES_PASSWORD=hotstuff
+      - POSTGRES_DB=hotstuff
+    restart: always
+volumes: 
+  db: 
