@@ -3,6 +3,10 @@ import { RadiatorService } from "./radiator.service";
 
 export class RoomService {
     constructor(private readonly radiatorService: RadiatorService) { }
+
+    async get(): Promise<Room[]> {
+        return Room.find({ relations: ['radiators'] });
+    }
     
     async getTemperature(r: Room): Promise<number> {
         const tempsPromises = r.radiators.map(radiator => this.radiatorService.getTemperature(radiator));

@@ -1,8 +1,8 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, BaseEntity } from "typeorm"
 import { Room } from "./Room";
 
 @Entity()
-export class Radiator {
+export class Radiator extends BaseEntity {
     
     @PrimaryGeneratedColumn('uuid')
     id: string;
