@@ -6,6 +6,7 @@ import RPi.GPIO as GPIO
 
 app = Flask(__name__)
 
+
 def send_proximity():
     print("Beginning send_proximity")
     exit_code, data = btmgmt.command_str("--timeout", "3", "find")
@@ -47,10 +48,10 @@ def send_temp():
     print("end temp")
     return str(cpu_temp)    
 
+setupGPIO()
 
 @app.get('/api/proximity')
 def proximity():
-    setupGPIO()
     return send_proximity()
 
 @app.get('/api/temp')
@@ -60,8 +61,10 @@ def temp():
 @app.get('/api/activate')
 def activate():
     print("Hey I'm in the activate function")
-    return controlLED(1)
+    controlLED(1)
+    return "OK", 200 
 
 @app.get('/api/deactivate')
 def deactivate():
-    return controlLED(0)
+    controlLED(0)
+    return "OK", 200 
