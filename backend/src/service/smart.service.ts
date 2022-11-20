@@ -3,8 +3,7 @@ import { RoomService } from "./room.service";
 
 export class SmartService {
     private locationHistory: { [timestamp: number]: { [id: string]: boolean} };
-    constructor(private readonly roomService: RoomService,
-                private readonly radiatorService: RadiatorService) { 
+    constructor(private readonly roomService: RoomService) { 
                     this.locationHistory = {};
     }
     
@@ -16,7 +15,7 @@ export class SmartService {
 
             const radiators = rooms.map(r => r.radiators).flatMap(arr => arr);
 
-            const hasPeople = await Promise.all(radiators.map(async (radiator) => ({ id: radiator.id, hasOccupants: await this.radiatorService.hasOccupants(radiator) })));
+            const hasPeople = await Promise.all(radiators.map(async (radiator) => ({ id: radiator.id, hasOccupants: await this.roomService.hasOccupants(radiator) })));
             this.locationHistory[timestamp] = {};
 
             hasPeople.forEach(radiatorHasOccupants => this.locationHistory[timestamp][radiatorHasOccupants.id] = radiatorHasOccupants.hasOccupants);

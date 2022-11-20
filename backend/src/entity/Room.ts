@@ -11,9 +11,9 @@ export class Room extends BaseEntity {
     @Column()
     name: string
 
-    @OneToMany(() => Occupant, (occ) => occ.room)
-    occupants: Occupant[];
-
     @OneToMany(() => Radiator, (occ) => occ.room)
     radiators: Radiator[];
+
+    temperature: number;
+    isOccupied: boolean;
 }

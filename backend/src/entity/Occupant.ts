@@ -13,6 +13,6 @@ export class Occupant extends BaseEntity {
     @Column()
     bluetoothID: string
 
-    @ManyToOne(() => Room, (room) => room.occupants)
-    room: Room;
+    // @ManyToOne(() => Room, (room) => room.occupants)
+    // room: Room;
 }
