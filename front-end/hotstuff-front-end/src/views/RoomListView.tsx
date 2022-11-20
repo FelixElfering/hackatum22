@@ -36,19 +36,25 @@ let RoomListView = () => {
 
   let roomList = () => {
     if (rooms.length == 0) {
-      return (<div className="flex-container-item">
+      return (<div className="loading-">
         <CircularProgress />
         <br></br>Currently Loading Rooms</div>)
     } else {
       return (
         rooms.map((room: Room) => (
-            <div className="flex-container-item" style={{background: `linear-gradient(to bottom, rgba(255, 255, 255, 0.7) 0%,rgba(255, 255, 255, 0.7) 100%), url('${room.getBackground()}') cover 0 0` }}>
-              {room.name}
+          <div className="flex-container-item">
+            <img className="flex-container-img" src={`${room.getBackground()}`}></img>
+            <div className="flex-container-text-overlay">
+              <div className="flex-container-item-title">
+                {room.name}
+              </div>
               <br></br>
-              {room.getIcon()}
-              <br></br>
-              {room.isOccupied ? "Occupied" : "Vacant"}
-            </div>))
+              <div className="flex-container-item-info">
+                <div>{room.temperature}°C</div>
+                <div>{room.isOccupied ? "Occupied" : "Vacant"}</div>
+              </div>
+            </div>
+          </div>))
       )
     }
   }

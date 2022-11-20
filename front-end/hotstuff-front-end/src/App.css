@@ -12,19 +12,62 @@ a, a:visited {
 }
 
 .flex-container-item {
+  position: relative;
   display: flex;
-  flex-direction: column;
   text-align: center;
   flex-grow: 1;
   height: 10rem;
-  width: 10rem;
+  width: 14rem;
   align-items: center;
   background-color: white;
-  background-position: center;
-  background-size: cover;
-  padding: 0.5rem;
-  justify-content: center;
   border-radius: 3;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
+.flex-container-item-title {
+  text-align: left;
+  flex-grow: 1;
+  width: 90%;
+  margin: 1rem;
+  font-size: larger;
+  font-weight: bold;
+}
+
+.flex-container-item-info {
+  display: flex;
+  width: 90%;
+  margin: 1rem;
+  justify-content: space-between;
+  font-size: large;
+  font-weight: bold;
+}
+
+.loading-div {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.flex-container-text-overlay {
+  position: absolute;
+  display:flex;
+  align-items: center;
+  padding: 0;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  background-color: rgba(255, 255, 255, 0.50);
+}
+
+.flex-container-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
