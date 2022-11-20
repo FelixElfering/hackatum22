@@ -16,22 +16,14 @@ export class AppController {
         room.temperature = temp;
         room.isOccupied = false;
         let isOccupied = await this.roomService.roomHasOccupants(room);
-        console.log(`is occupied: ${isOccupied}`);
+        // if (isOccupied) {
+        //   console.log("Activating radiators");
+        //   await this.roomService.activateRadiators(room);
+        // } else {
+        //   console.log("Deactivating radiators");
+        //   await this.roomService.deactivateRadiators(room);
+        // }
         room.isOccupied = isOccupied;
-
-        if (isOccupied) {
-          try {
-            room.radiators.map(async (radiator) => await this.roomService.activate(radiator));
-          } catch(e) {
-            console.error(`couldn't activate radiator: ${e}`);
-          }
-        } else {
-          try {
-            room.radiators.map(async (radiator) => await this.roomService.deactivate(radiator));
-          } catch(e) {
-            console.error(`couldn't deactivate radiator: ${e}`);
-          }
-        }
 
         return room;
       });
@@ -45,29 +37,14 @@ export class AppController {
   async activate() {
     const radiators = await this.roomService.getRadiators();
     radiators.forEach(async (radiator) => await this.roomService.activate(radiator));
+    console.log("Turn the radiators on");
   }
 
   @Get('/api/radiators/off')
   async deactivate() {
     const radiators = await this.roomService.getRadiators();
     radiators.forEach(async (radiator) => await this.roomService.deactivate(radiator));
-  }
-
-  @Get('/api/rooms/:id')
-  async getRoom(@Param('id') id: string): Promise<Room> {
-    try {
-      const room = await this.roomService.getByID(id);
-      const temp = await this.roomService.getRoomTemperature(room);
-      room.temperature = temp;
-      room.isOccupied = false;
-      let isOccupied = await this.roomService.roomHasOccupants(room);
-      console.log(`is occupied: ${isOccupied}`);
-      room.isOccupied = isOccupied;
-      
-      return room;
-    } catch(e) {
-      throw new NotFoundException('Room not found');
-    }
+    console.log("Turn the radiators off")
   }
 
   @Get('/api/room/temp/:id')
