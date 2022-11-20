@@ -1,0 +1,30 @@
+a, a:visited {
+  text-decoration: none;
+  color: inherit;
+}
+
+.flex-container {
+  margin: 1rem; 
+  gap: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.flex-container-item {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  flex-grow: 1;
+  height: 10rem;
+  width: 10rem;
+  align-items: center;
+  background-color: white;
+  background-position: center;
+  background-size: cover;
+  padding: 0.5rem;
+  justify-content: center;
+  border-radius: 3;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
