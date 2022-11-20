@@ -4,7 +4,7 @@ import { Radiator } from "../entity/Radiator";
 import { Room } from "../entity/Room";
 
 export class RoomService {
-    private readonly THRESHOLD = -100;
+    private readonly THRESHOLD = -40;
     private devices = [];
 
     async get(): Promise<Room[]> {
@@ -25,7 +25,7 @@ export class RoomService {
         const sum = temps.reduce((agg, curr) => agg += curr, 0);
         const numRadiators = r.radiators.length;
         
-        const avg = numRadiators > 0 ? sum / numRadiators : -1337; // if there isnt a positive number of radiators, return avg temp of -1337
+        const avg = numRadiators > 0 ? sum / numRadiators : 25; // if there isnt a positive number of radiators, return avg temp of 25
 
         return avg;
     }
